@@ -5,7 +5,7 @@ const messages = {
   'giphy.search': 'Suche nach GIFs',
   'giphy.error': 'Ups! Etwas ist schiefgelaufen. Bitte versuche es erneut.',
   'giphy.loading': 'Lädt...',
-  'giphy.nomatches': 'Keine Treffer gefunden.'
+  'giphy.nomatches': 'Keine Treffer gefunden.',
 };
 
 export default Object.assign({}, inherited, messages);

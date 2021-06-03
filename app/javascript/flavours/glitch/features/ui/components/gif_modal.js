@@ -74,10 +74,10 @@ class GIFModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal giphy-modal'>
         <div className='giphy-modal__container'>
-          <IconButton title={ intl.formatMessage(messages.close) } icon='clos' size='16' onClick={this.props.onClose}  style={{float: 'right'}} /><br />
+          <IconButton title={intl.formatMessage(messages.close)} icon='clos' size='16' onClick={this.props.onClose}  style={{float: 'right'}} /><br />
           <ReactGiphySearchbox
             apiKey='1ttK05MF98dLllFFknTAVo0U4CGcQb4J'
-            onSelect={this.onDoneButton(item)}
+            onSelect={item => this.onDoneButton(item)}
             masonryConfig={[
               { columns: 2, imageWidth: 190, gutter: 5 },
               { mq: '700px', columns: 2, imageWidth: 210, gutter: 5 },
