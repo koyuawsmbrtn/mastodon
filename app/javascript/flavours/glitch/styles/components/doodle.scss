@@ -1,6 +1,6 @@
 $doodleBg: #d9e1e8;
 .doodle-modal {
-  @extend %boost-modal;
+  @extend .boost-modal;
   width: unset;
 }
 
