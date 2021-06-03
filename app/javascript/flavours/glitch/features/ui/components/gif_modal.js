@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { giphySet, uploadCompose } from 'flavours/glitch/actions/compose';
 import IconButton from 'flavours/glitch/components/icon_button';
-import ReactGiphySearchbox from 'react-giphy-searchbox'
+import ReactGiphySearchbox from 'react-giphy-searchbox';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   search:    { id: 'giphy.search', defaultMessage: 'Search for GIFs' },
   error:     { id: 'giphy.error', defaultMessage: 'Oops! Something went wrong. Please, try again.' },
-  loading:   { id: 'giphy.loading', defaultMessage: 'Loading...'},
+  loading:   { id: 'giphy.loading', defaultMessage: 'Loading...' },
   nomatches: { id: 'giphy.nomatches', defaultMessage: 'No matches found.' },
   close:     { id: 'settings.close', defaultMessage: 'Close' },
 });
@@ -51,20 +51,20 @@ class GIFModal extends ImmutablePureComponent {
   };
 
   onDoneButton = (item) => {
-    const url = item["images"]["original"]["mp4"];
+    const url = item.images.original.mp4;
     var modal = this;
     fetch(url).then(function(response) {
       return response.blob();
     }).then(function(blob) {
       const reader = new FileReader();
-      reader.readAsDataURL(blob); 
+      reader.readAsDataURL(blob);
       reader.onloadend = function() {
         var dataUrl = reader.result;
         const file = dataURLtoFile(dataUrl, 'giphy.mp4');
         modal.props.submit(file);
         modal.props.onClose(); // close dialog
       };
-    });
+    }).catch(()=>{});
   };
 
   render () {
@@ -74,20 +74,20 @@ class GIFModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal giphy-modal'>
         <div className='giphy-modal__container'>
-          <IconButton title={intl.formatMessage(messages.close)} icon="close" size="16" onClick={this.props.onClose}  style={{float: "right"}} /><br />
+          <IconButton title={ intl.formatMessage(messages.close) } icon='clos' size='16' onClick={this.props.onClose}  style={{float: 'right'}} /><br />
           <ReactGiphySearchbox
-            apiKey="1ttK05MF98dLllFFknTAVo0U4CGcQb4J"
-            onSelect={item => this.onDoneButton(item)}
+            apiKey='1ttK05MF98dLllFFknTAVo0U4CGcQb4J'
+            onSelect={this.onDoneButton(item)}
             masonryConfig={[
               { columns: 2, imageWidth: 190, gutter: 5 },
-              { mq: "700px", columns: 2, imageWidth: 210, gutter: 5 }
+              { mq: '700px', columns: 2, imageWidth: 210, gutter: 5 },
             ]}
-            autoFocus="true"
+            autoFocus='true'
             searchPlaceholder={intl.formatMessage(messages.search)}
             messageError={intl.formatMessage(messages.error)}
             messageLoading={intl.formatMessage(messages.loading)}
             messageNoMatches={intl.formatMessage(messages.nomatches)}
-            wrapperClassName="giphy-modal__searchbox"
+            wrapperClassName='giphy-modal__searchbox'
           />
         </div>
       </div>
